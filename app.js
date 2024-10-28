@@ -17,6 +17,16 @@ document.getElementById("circle").addEventListener("change", () => {
     shape = "circle"
 })
 
+// Task 4: Add Color Selection and Canvas Clearing
+
+document.getElementById("colorPicker").addEventListener("input", (e) => {
+    color = e.target.value
+})
+
+document.getElementById("clearCanvas").addEventListener("click", () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+})
+
 // Task 3: Implement Shape Drawing Logic
 
 let isDrawing = false
@@ -60,3 +70,4 @@ canvas.addEventListener("mousemove", (e) => {
 
     ctx.stroke()
 })
+

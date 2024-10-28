@@ -39,14 +39,17 @@ canvas.addEventListener("mousedown", (e) => {
     startY = e.offsetY
 })
 
-canvas.addEventListener("mouseup", () => isDrawing = false)
+canvas.addEventListener("mouseup", () => {
+    isDrawing = false
+    ctx.beginPath()
+})
+
 canvas.addEventListener("mouseleave", () => isDrawing = false)
 
 // Draw shape on mousemove while drawing
 canvas.addEventListener("mousemove", (e) => {
     if (!isDrawing) return
 
-    // Clear only the area to avoid overlapping shapes while dragging
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.beginPath()
     ctx.strokeStyle = color
@@ -56,11 +59,11 @@ canvas.addEventListener("mousemove", (e) => {
         ctx.moveTo(startX, startY)
         ctx.lineTo(e.offsetX, e.offsetY)
     }
-    // Rectangle drawing logic
+    // Stroke Rectangle drawing logic
     else if (shape === "rectangle") {
         const width = e.offsetX - startX
         const height = e.offsetY - startY
-        ctx.fillRect(startX, startY, width, height)
+        ctx.strokeRect(startX, startY, width, height)
     }
     // Circle drawing logic
     else if (shape === "circle") {
@@ -70,4 +73,3 @@ canvas.addEventListener("mousemove", (e) => {
 
     ctx.stroke()
 })
-
